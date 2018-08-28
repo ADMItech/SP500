@@ -6,6 +6,14 @@ import os
 
 
 def save_sp500_tickers():
+    '''
+    Downloads data from WIKIPEDIA and creates:
+        1) SP500Data folder
+        2) SP500.csv file .... Ticker and industry
+        3) Industries.txt   .... File with all unique industries (may change only if new industry is defined)
+        4) CSV file for each industry that contains tickers from that industry
+
+    '''
     if not os.path.exists("SP500Data"):
         os.makedirs("SP500Data")
     if not os.path.exists("SP500Data/SP500.csv"):
@@ -40,11 +48,13 @@ def save_sp500_tickers():
             newdf.to_csv("SP500Data/{}.csv".format(indu), index_label=0, index=0)
 
 def list_SP500():
+    '''
+    Creates list of all tickers of SP500 companies
+    '''
     df = pd.read_csv("SP500Data/SP500.csv", "r", delimiter=',')
     lsp500= df['Ticker'].tolist()
     return lsp500
 
 
 if __name__ == "__main__":
-    #save_sp500_tickers()
-    print(list_SP500())
+    save_sp500_tickers()

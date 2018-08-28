@@ -6,7 +6,7 @@ import os
 import pandas as pd
 
 
-quandl.ApiConfig.api_key = "GFC7TB6QRmcKByPXsN9y"
+quandl.ApiConfig.api_key = "GFC7TB6QRmcKByPXsN9y"  # private key of each owner
 
 
 def download_data(shares):
@@ -19,7 +19,8 @@ def download_data(shares):
             newdf = df[df.columns[1:]].set_index(['date'])
             newdf.to_csv("CSV-DATA/{}.csv".format(ticker))
         else:
-            print("Already have {}".format(ticker))
+            print("*** I already have {} ***".format(ticker))
+
 
 def compile_data():
 
